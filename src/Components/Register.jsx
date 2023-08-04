@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 export default function Register() {
   return (
     <div className="container">
@@ -43,7 +43,12 @@ export default function Register() {
             <label for="floatingTextarea">Your Address</label>
           </div>
           <div className="mb-3 d-grid gap-2">
-            <button className="btn btn-primary">Next</button>
+            <Link to="/password-register" className="btn btn-primary">
+              Next
+            </Link>
+            <p>
+              Have an account? <Link to="/login">Login</Link>
+            </p>
           </div>
         </div>
       </div>
