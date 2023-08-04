@@ -1,0 +1,59 @@
+.main{
+  background-color: lemonchiffon;
+  height: 100%;
+}
+.hero{
+   height:75vh;
+   background-color: palegoldenrod;
+   overflow: hidden;
+}
+.text-grey{
+  color:#646464;
+}
+.btn-mod{
+  background-color: #ff6600;
+}
+.tilt{
+  clip-path: polygon(0% 0%, 100% 0%, 100% 88%, 0% 100%);
+
+}
+
+.title {
+  color:#ff6600;
+  
+}
+.title span{
+  border-bottom: 4px solid #ff6600;
+}
+.box{
+  width:20;
+  height: 15;
+  padding: 10px;
+  background-color:#ff6600;
+  font-weight: bold;
+  border-radius: 2px;
+}
+.box_start{
+  align-items: flex-start;
+}
+.box_end{
+  align-items: flex-end;
+}
+.box__center{
+  align-items: center;
+}
+.footer{
+  background-color: #2e2e2ef6;
+  color:wheat;
+}
+.login{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin:  auto;
+  max-width: 100%;
+  width:480px;
+}
+.nav-item{
+  padding-right: 13px;
+}
