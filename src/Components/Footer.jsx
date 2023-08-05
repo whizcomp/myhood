@@ -1,6 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsFacebook, BsInstagram, BsTwitter, BsWhatsapp } from "react-icons/bs";
+import axios from "axios";
 export default function Footer() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const res = await axios.post("http://localhost/winter-hood/", {
+      name,
+      email,
+      address: message,
+    });
+    console.log(res);
+  };
   return (
     <footer className="footer mt-3">
       <div className="container">
@@ -30,28 +43,31 @@ export default function Footer() {
 
           <div className="col">
             <p className="text-uppercase fw-bold ">Contact us</p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div class="mb-3">
                 <input
                   type="text"
                   class="form-control"
-                  id="exampleFormControlInput1"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   placeholder="John Doe"
                 />
               </div>
               <div class="mb-3">
                 <input
                   type="email"
-                  class="form-control"
-                  id="exampleFormControlInput1"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="form-control"
                   placeholder="name@example.com"
                 />
               </div>
               <div class="mb-3">
                 <textarea
                   class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="3"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  rows="2"
                 ></textarea>
               </div>
               <div class="d-grid gap-2">

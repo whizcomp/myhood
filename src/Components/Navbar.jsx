@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FiShoppingCart } from "react-icons/fi";
 import { MdOutlineAccountCircle } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
+import UserContext from "../Context/userContext";
+
 export default function Navbar() {
+  const { user, setUser } = useContext(UserContext);
   return (
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="#">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary">
+      <div className="container">
+        <Link
+          className="navbar-brand  fw-bolder active"
+          aria-current="page"
+          to="/"
+        >
           Winter Hood
-        </a>
+        </Link>
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarText"
@@ -18,34 +25,41 @@ export default function Navbar() {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-          <ul class="navbar-nav  ms-auto  mb-2 mb-lg-0">
-            <li class="nav-item">
+        <div className="collapse navbar-collapse" id="navbarText">
+          <ul className="navbar-nav  ms-auto  mb-2 mb-lg-0">
+            <li className="nav-item">
               <Link
-                class="nav-link fw-bolder active"
+                className="nav-link fw-bolder active"
                 aria-current="page"
                 to="/"
               >
                 Home
               </Link>
             </li>
-            <li class="nav-item d-flex flex-row">
+            <li className="nav-item d-flex flex-row">
               <span className="pt-2 ps-2 ">
                 <FiShoppingCart size="30" />
               </span>
-              <Link class="nav-link fw-bold" to="/cart">
+              <Link className="nav-link fw-bold" to="/cart">
                 Cart
               </Link>
             </li>
-            <li class="nav-item d-flex flex-row">
+            <li className="nav-item d-flex flex-row">
               <span className="pt-2 ps-2 ">
                 <MdOutlineAccountCircle size="30" />
               </span>
-              <Link class="nav-link fw-bold" to="/login">
-                account
-              </Link>
+              {user && (
+                <Link className="nav-link fw-bold" to="/orders">
+                  Orders
+                </Link>
+              )}
+              {!user && (
+                <Link className="nav-link fw-bold" to="/login">
+                  Login
+                </Link>
+              )}
             </li>
           </ul>
         </div>

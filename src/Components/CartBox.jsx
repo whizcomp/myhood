@@ -1,5 +1,6 @@
 import React from "react";
 import { TfiClose } from "react-icons/tfi";
+import CartCounter from "./CartCounter";
 
 export default function CartBox({ img, title, brand, amount }) {
   return (
@@ -12,11 +13,7 @@ export default function CartBox({ img, title, brand, amount }) {
             <p className="badge rounded-pill bg-warning text-dark"> {brand}</p>
             <div className="d-flex flex-column">
               <p className="fw-bold fs-5 ">$ {amount}</p>
-              <div className="d-flex flex-row">
-                <button className="btn btn-warning me-2">-</button>
-                <span className="pt-2">1</span>
-                <button className="btn btn-warning ms-2">+</button>
-              </div>
+              <CartCounter />
             </div>
           </div>
         </div>
