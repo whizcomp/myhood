@@ -4,12 +4,12 @@ import Footer from "./Footer";
 import Hero from "./Hero";
 import Shop from "./Shop";
 
-export default function Home() {
+export default function Home({ data }) {
   return (
     <>
       <Hero />
-      <Shop />
-      <Company />
+      <Shop data={data} />
+      <Company data={data} />
       <Footer />
     </>
   );

@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import OrderBox from "./OrderBox";
 import blue from "../assets/blue.png";
+import axios from "axios";
 
 export default function Orders() {
+  useEffect(() => {
+    getOrders();
+  }, []);
+  const getOrders = async () => {
+    const res = await axios.get("http://localhost/winter-hood/getOrders.php/9");
+    console.log(res);
+  };
   return (
     <div className="pb-3">
       <h1

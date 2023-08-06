@@ -1,15 +1,22 @@
-import React from "react";
-import grey from "../assets/grey.png";
-import green from "../assets/green.png";
-import blue from "../assets/blue.png";
-import ShopBox from "./ShopBox";
-import red from "../assets/red_black.png";
-import AOS from "aos";
+import React, { useContext } from "react";
 
-export default function Shop() {
+import ShopBox from "./ShopBox";
+import AOS from "aos";
+import CartContext from "../Context/cartContext";
+
+export default function Shop({ data }) {
   React.useEffect(() => {
     AOS.init();
+    const sortedData = [...data].sort((a, b) => a.title.localeCompare(b.title));
+    const res = sortedData.filter((hood) => hood.id <= 5);
+    setItems(res);
   }, []);
+  const { cartList, setCatList } = useContext(CartContext);
+  const [items, setItems] = React.useState([]);
+  const cart = (hood) => {
+    const updatedCart = [...cartList, hood]; // Add the new 'hood' item to the cart using spread operator
+    setCatList(updatedCart);
+  };
   return (
     <div className="py-5">
       <h1
@@ -22,11 +29,15 @@ export default function Shop() {
         <div className="row">
           <div className="col-12">
             <div className="d-flex " data-aos="fade-up">
-              <ShopBox title="Black hood" price="$700" image={red} />
-              <ShopBox title="Grey Hood" price="$400" image={grey} />
-              <ShopBox title="Red and black hood" price="$800" image={red} />
-              <ShopBox title="Blue Hood" price="$500" image={blue} />
-              <ShopBox title="Green" price="$300" image={green} />
+              {items.map((hood) => (
+                <ShopBox
+                  key={hood.id}
+                  title={hood.title}
+                  price={` $${hood.amount}`}
+                  image={hood.img}
+                  addToCart={() => cart(hood)}
+                />
+              ))}
             </div>
           </div>
         </div>
